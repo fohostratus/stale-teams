@@ -1,0 +1,16 @@
+name: 'Notify Stale Issues'
+description: 'Action to send teams notifications for stale issues'
+author: 'rileymichael'
+inputs:
+  repo-token:
+    description: 'Token for the repo. Can be passed in using {{ secrets.GITHUB_TOKEN }}'
+    required: true
+  webhook:
+    description: 'webhook to notify'
+    required: true
+  days-before-stale:
+    description: 'The number of days old an issue can be before marking it stale'
+    default: 2
+runs:
+  using: 'node12'
+  main: 'lib/main.js'
