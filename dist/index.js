@@ -2330,7 +2330,7 @@ function processIssues(client, args, page = 1) {
 }
 function sendTeams(issue, webhook) {
     return __awaiter(this, void 0, void 0, function* () {
-        const text = `Stale issue/pr found: ${issue.url}`;
+        const text = `Stale issue/pr: [${issue.title}](${issue.url})`;
         const body = {
             "@type": "MessageCard",
             "@context": "https://schema.org/extensions",

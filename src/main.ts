@@ -53,7 +53,7 @@ async function processIssues(
 }
 
 async function sendTeams(issue: Issue, webhook: string) {
-  const text = `Stale issue/pr found: ${issue.url}`;
+  const text = `Stale issue/pr: [${issue.title}](${issue.url})`;
   const body = {
     "@type": "MessageCard",
     "@context": "https://schema.org/extensions",
