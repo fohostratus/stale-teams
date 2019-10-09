@@ -1,7 +1,7 @@
-import * as core from '@actions/core';
-import * as github from '@actions/github';
-import * as Octokit from '@octokit/rest';
-import Axios, * as axios from 'axios';
+import * as core from "@actions/core";
+import * as github from "@actions/github";
+import * as Octokit from "@octokit/rest";
+import Axios, * as axios from "axios";
 
 type Issue = Octokit.IssuesListForRepoResponseItem;
 
@@ -31,11 +31,10 @@ async function processIssues(
   const issues = await client.issues.listForRepo({
     owner: github.context.repo.owner,
     repo: github.context.repo.repo,
-    state: 'open',
+    state: "open",
     per_page: 100,
     page: page
   });
-
 
   if (issues.data.length === 0) {
     return;
@@ -58,17 +57,18 @@ async function sendTeams(issue: Issue, webhook: string) {
   const body = {
     "@type": "MessageCard",
     "@context": "https://schema.org/extensions",
-    "summary": "Stale Github Notification",
-    "themeColor": "#FFDD00",
-    "sections": [
+    summary: "Stale Github Notification",
+    themeColor: "#FFDD00",
+    sections: [
       {
-        "activityTitle": "Github",
-        "activitySubtitle": "Stale Issues",
-        "activityImage": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
-        "text": text
+        activityTitle: "Github",
+        activitySubtitle: "Stale Issues",
+        activityImage:
+          "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+        text: text
       }
     ]
-  }
+  };
   await Axios.post(webhook, body);
 }
 
@@ -80,19 +80,16 @@ function wasLastUpdatedBefore(issue: Issue, num_days: number): boolean {
   // return millisSinceLastUpdated >= daysInMillis;
 }
 
-
 function getAndValidateArgs(): Args {
   const args = {
-    repoToken: core.getInput('repo-token', { required: true }),
-    webhook: core.getInput('webhook', { required: true }),
+    repoToken: core.getInput("repo-token", { required: true }),
+    webhook: core.getInput("webhook", { required: true }),
     daysBeforeStale: parseInt(
-      core.getInput('days-before-stale', { required: true })
+      core.getInput("days-before-stale", { required: true })
     )
   };
 
-  for (var numberInput of [
-    'days-before-stale'
-  ]) {
+  for (var numberInput of ["days-before-stale"]) {
     if (isNaN(parseInt(core.getInput(numberInput)))) {
       throw Error(`input ${numberInput} did not parse to a valid integer`);
     }
