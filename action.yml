@@ -1,6 +1,9 @@
-name: 'Notify Stale Issues'
-description: 'Action to send teams notifications for stale issues'
+name: 'Stale Teams'
+description: 'Action to send notifications to Microsoft Teams for stale issues'
 author: 'rileymichael'
+branding:
+  icon: 'activity'
+  color: 'blue'
 inputs:
   repo-token:
     description: 'Token for the repo. Can be passed in using {{ secrets.GITHUB_TOKEN }}'

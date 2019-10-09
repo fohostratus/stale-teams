@@ -6,7 +6,7 @@ fork of actions/stale that sends notifications to teams for stale issues/prs.
 
 ```yaml
 
-name: "Stale Teams check"
+name: "Stale Teams"
 
 on:
   schedule:
@@ -20,10 +20,12 @@ jobs:
       uses: actions/checkout@v1
     - name: stale-teams
       id: stale-teams
-      uses: rileymichael/stale-teams@latest
+      uses: rileymichael/stale-teams@v1.0
       with:
         webhook: ${{ secrets.webhook }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         days-before-stale: 2
 
 ```
+
+![Example Alerts](img/example.png)

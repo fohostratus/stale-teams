@@ -1,7 +1,7 @@
 import * as core from "@actions/core";
 import * as github from "@actions/github";
 import * as Octokit from "@octokit/rest";
-import Axios, * as axios from "axios";
+import Axios from "axios";
 
 type Issue = Octokit.IssuesListForRepoResponseItem;
 
