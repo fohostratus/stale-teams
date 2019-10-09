@@ -73,11 +73,10 @@ async function sendTeams(issue: Issue, webhook: string) {
 }
 
 function wasLastUpdatedBefore(issue: Issue, num_days: number): boolean {
-  return true;
-  // const daysInMillis = 1000 * 60 * 60 * 24 * num_days;
-  // const millisSinceLastUpdated =
-  //   new Date().getTime() - new Date(issue.updated_at).getTime();
-  // return millisSinceLastUpdated >= daysInMillis;
+  const daysInMillis = 1000 * 60 * 60 * 24 * num_days;
+  const millisSinceLastUpdated =
+    new Date().getTime() - new Date(issue.updated_at).getTime();
+  return millisSinceLastUpdated >= daysInMillis;
 }
 
 function getAndValidateArgs(): Args {

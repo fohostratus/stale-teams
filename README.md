@@ -1,4 +1,5 @@
 # stale-teams
+
 fork of actions/stale that sends notifications to teams for stale issues/prs.
 
 ## usage

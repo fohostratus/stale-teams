@@ -2349,11 +2349,9 @@ function sendTeams(issue, webhook) {
     });
 }
 function wasLastUpdatedBefore(issue, num_days) {
-    return true;
-    // const daysInMillis = 1000 * 60 * 60 * 24 * num_days;
-    // const millisSinceLastUpdated =
-    //   new Date().getTime() - new Date(issue.updated_at).getTime();
-    // return millisSinceLastUpdated >= daysInMillis;
+    const daysInMillis = 1000 * 60 * 60 * 24 * num_days;
+    const millisSinceLastUpdated = new Date().getTime() - new Date(issue.updated_at).getTime();
+    return millisSinceLastUpdated >= daysInMillis;
 }
 function getAndValidateArgs() {
     const args = {
